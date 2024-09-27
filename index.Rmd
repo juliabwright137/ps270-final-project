@@ -13,4 +13,4 @@ output:
 
 I am interested in exploring data related to...
 
-I am interested looking at election outcomes/polling data. I would also be interested in looking into campaign finance similar to problem set 2. I thought it was interesting looking at which candidates spent the most on advestising
+I am interested looking at election outcomes/polling data to see if predictions based on polling data before elections translates to the outcome. I would also be interested in looking into campaign finance similar to problem set 2. I thought it was interesting looking at which candidates spent the most on advertising. 
