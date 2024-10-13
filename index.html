@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -1546,6 +1546,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="project-thoughts">Project thoughts</h2>
 <p>I am interested in exploring data related to…</p>
 <p>I am interested looking at election outcomes/polling data to see if predictions based on polling data before elections translates to the outcome. I would also be interested in looking into campaign finance similar to problem set 2. I thought it was interesting looking at which candidates spent the most on advertising.</p>
+<h2 id="milestone-2-data-and-tentative-research-question">Milestone 2, data and tentative research question</h2>
+<p>I will be using the dataset “U.S. President Precinct-Level Returns 2020” from Harvard Dataverse to examine if certain modes of voting, such as absentee and mail in or in-person on Election Day, correlates to the candidate/party that received the votes.</p>
+<p>My question will be does the mode of voting have an effect on the votes given to the Democratic Party and its candidates?</p>
+<p>I hypothesize that a greater amount of absentee votes (mail in votes) are received by the Democratic Party. I hypothesize this due to behavioral patterns that I observed during the 2020 elections and the COVID-19 pandemic. I observed that many Democrats voted via mail-in ballot to avoid the potential of spreading COVID-19. Republicans seemed more comfortable going to the polls in person, and debated the legitimacy of mail-in ballots. These behavioral observations lead me to hypothesize that more absentee votes are Democrat votes.</p>
+<p>The explanatory variable of interest will be the form or more of voting. This is measured by the category present in the data which is either absentee or normal/in-person. This has been pre-recorded.</p>
+<p>The outcome variable will be which party was voted for. It will either be a democratic or republican candidate, with some writing in and voting for a third party. I will be looking at the share of votes received by the democrats that are mail-ins/absentee.</p>
+<p>If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
