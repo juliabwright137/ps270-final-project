@@ -14,3 +14,16 @@ output:
 I am interested in exploring data related to...
 
 I am interested looking at election outcomes/polling data to see if predictions based on polling data before elections translates to the outcome. I would also be interested in looking into campaign finance similar to problem set 2. I thought it was interesting looking at which candidates spent the most on advertising. 
+
+## Milestone 2, data and tentative research question
+I will be using the dataset “U.S. President Precinct-Level Returns 2020” from Harvard Dataverse to examine if certain modes of voting, such as absentee and mail in or in-person on Election Day, correlates to the candidate/party that received the votes. 
+
+My question will be does the mode of voting have an effect on the votes given to the Democratic Party and its candidates? 
+
+I hypothesize that a greater amount of absentee votes (mail in votes) are received by the Democratic Party. I hypothesize this due to behavioral patterns that I observed during the 2020 elections and the COVID-19 pandemic. I observed that many Democrats voted via mail-in ballot to avoid the potential of spreading COVID-19. Republicans seemed more comfortable going to the polls in person, and debated the legitimacy of mail-in ballots. These behavioral observations lead me to hypothesize that more absentee votes are Democrat votes. 
+
+The explanatory variable of interest will be the form or more of voting. This is measured by the category present in the data which is either absentee or normal/in-person. This has been pre-recorded. 
+
+The outcome variable will be which party was voted for. It will either be a democratic or republican candidate, with some writing in and voting for a third party. I will be looking at the share of votes received by the democrats that are mail-ins/absentee. 
+
+If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false. 
