@@ -27,3 +27,27 @@ The explanatory variable of interest will be the form or more of voting. This is
 The outcome variable will be which party was voted for. It will either be a democratic or republican candidate, with some writing in and voting for a third party. I will be looking at the share of votes received by the democrats that are mail-ins/absentee. 
 
 If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false. 
+
+
+```{r}
+data <- read.csv("PRESIDENT_precinct_general.csv")
+print(data)
+```
+
+```{r fig.width= 20, fig.height = 4}
+library(tidyverse)
+
+
+filter_data <- data |> filter((party_simplified == "DEMOCRAT" | party_simplified == "REPUBLICAN" | party_simplified == "OTHER") &
+         (mode == "ABSENTEE" | mode == "NOT ABSENTEE"))
+
+ggplot(filter_data, aes(x = mode, fill = party_simplified)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Voting mode by party",
+       x = "Voting Mode (Absentee vs. Not Absentee or In Person)",
+       y = "Number of votes by party",
+       fill = "Party") +
+  theme_minimal()
+print(ggplot)
+```
+
