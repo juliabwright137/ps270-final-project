@@ -28,12 +28,13 @@ The outcome variable will be which party was voted for. It will either be a demo
 
 If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false. 
 
+## Data Visualization
 
 ```{r}
 data <- read.csv("PRESIDENT_precinct_general.csv")
-print(data)
 ```
 
+## Graph 
 ```{r fig.width= 20, fig.height = 4}
 library(tidyverse)
 
