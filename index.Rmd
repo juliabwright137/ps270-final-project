@@ -1,13 +1,11 @@
 ---
 title: "PS270 Final Project"
 author: Julia Wright
-description: "My final project"
+description: "My Final Project"
 output:
   distill::distill_article:
     self_contained: false
 ---
-
-
 
 ## Project thoughts
 
@@ -31,7 +29,17 @@ If a large majority of absentee votes were received by the Democrats, this could
 ## Data Visualization
 
 ```{r}
-data <- read.csv("PRESIDENT_precinct_general.csv")
+data <- read.csv("PRESIDENT_precinct_reduced.csv")
+
+library(tidyverse)
+
+data <- data[, !(names(data) %in% c("state", "party_detailed", "votes", "year", "precinct", "office", "county_name", "county_fips", "jurisdiction_name", "jurisdiction_fips", "candidate", "district", "dataverse", "stage", "special", "writein", "state_po", "state_fips", "state_cen", "state_ic", "date", "readme_check", "magnitude"))]
+
+write.csv(data, "PRESIDENT_precinct_reduced.csv", row.names = FALSE)
+
+file.info("PRESIDENT_precinct_reduced.csv")$size 
+
+
 ```
 
 ## Graph 
@@ -51,4 +59,31 @@ ggplot(filter_data, aes(x = mode, fill = party_simplified)) +
   theme_minimal()
 print(ggplot)
 ```
+
+## Second Visualization and Analysis
+
+```{r}
+library(tidyverse)
+library(broom)
+
+data <- data |>
+  filter(party_simplified  == "DEMOCRAT"
+         | party_simplified == "REPUBLICAN"
+         | party_simplified == "OTHER") |>
+  mutate(dem_voters = ifelse(party_simplified == "DEMOCRAT", 1, 0),
+        absentee_votes = ifelse(mode == "ABSENTEE", 1, 0))
+
+table <- lm(dem_voters ~ absentee_votes, data = data)
+
+table |>
+  broom::tidy() |>
+  select(term, estimate) |>  
+  knitr::kable(digits = 2)
+```
+
+The intercept of 0.17 means that when absentee votes is 0, about 17% of votes that are in person and at the polls will be for the Democratic candidate. 
+
+Since the coefficient for absentee votes is 0.00, this means that the mode of voting should have no effect on whether a voter votes for a Democratic or Republican candidate. 
+
+These findings contradict and disprove my hypothesis that more Democratic voters would be voting via mail in ballots versus in person, directly at the polls. 
 
