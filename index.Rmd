@@ -80,6 +80,10 @@ table |>
   select(term, estimate) |>  
   knitr::kable(digits = 2)
 ```
+```{r}
+ggplot(data, aes(x = absentee_votes, y = dem_voters)) +
+  geom_point(color = "steelblue")
+```
 
 The intercept of 0.17 means that when absentee votes is 0, about 17% of votes that are in person and at the polls will be for the Democratic candidate. 
 
