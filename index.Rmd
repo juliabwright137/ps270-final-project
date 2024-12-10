@@ -13,20 +13,21 @@ I am interested in exploring data related to...
 
 I am interested looking at election outcomes/polling data to see if predictions based on polling data before elections translates to the outcome. I would also be interested in looking into campaign finance similar to problem set 2. I thought it was interesting looking at which candidates spent the most on advertising. 
 
-## Milestone 2, data and tentative research question
-I will be using the dataset “U.S. President Precinct-Level Returns 2020” from Harvard Dataverse to examine if certain modes of voting, such as absentee and mail in or in-person on Election Day, correlates to the candidate/party that received the votes. 
+## Introduction
 
-My question will be does the mode of voting have an effect on the votes given to the Democratic Party and its candidates? 
+My research question is did the mode of voting, whether it be in-person voting directly at the polls or a mail in ballot have an effect on the votes given to the Democratic Party and its candidates in the 2020 Presidential election? 
 
 I hypothesize that a greater amount of absentee votes (mail in votes) are received by the Democratic Party. I hypothesize this due to behavioral patterns that I observed during the 2020 elections and the COVID-19 pandemic. I observed that many Democrats voted via mail-in ballot to avoid the potential of spreading COVID-19. Republicans seemed more comfortable going to the polls in person, and debated the legitimacy of mail-in ballots. These behavioral observations lead me to hypothesize that more absentee votes are Democrat votes. 
 
-The explanatory variable of interest will be the form or more of voting. This is measured by the category present in the data which is either absentee or normal/in-person. This has been pre-recorded. 
+This is interesting because the 2020 election was very unique in that it took place during a global pandemic and an unprecedented time. Understanding voting patterns and how they correlated with one party over another could lead to further research on if democrat votes were mail-in due to the state of the nation during the pandemic, or if this is a common pattern that is seen in each election cycle. 
 
-The outcome variable will be which party was voted for. It will either be a democratic or republican candidate, with some writing in and voting for a third party. I will be looking at the share of votes received by the democrats that are mail-ins/absentee. 
+## Data Section
 
-If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false. 
+I will be using the dataset “U.S. President Precinct-Level Returns 2020” from Harvard Dataverse to examine if certain modes of voting, such as absentee and mail in or in-person on Election Day, correlates to the candidate/party that received the votes. The key dependent and independent variables are measured through survey data, clinical data, and machine-readable text. 
 
-## Data Visualization
+The explanatory variable of interest will be the form or mode of voting. This is measured by the category present in the data which is either absentee or normal/in-person. This has been pre-recorded. The outcome variable will be which party was voted for. It will either be a democratic or republican candidate, with some writing in and voting for a third party. I will be looking at the share of votes received by the democrats that are mail-ins/absentee. If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false. 
+
+The bar plot pictured below compares the absentee votes versus non-absentee votes (voters who placed their vote in person, at the polls, on election day). On the left is the absentee votes separated by party. The democrat votes are slightly higher than the republican votes for absentee, with the democrat votes just above 35,000 votes and the republican votes just below 35,000. On the right is the non-absentee or in person votes, also separated by party. In this case, the in person votes are just about equal.
 
 ```{r}
 data <- read.csv("PRESIDENT_precinct_reduced.csv")
@@ -39,15 +40,13 @@ write.csv(data, "PRESIDENT_precinct_reduced.csv", row.names = FALSE)
 
 file.info("PRESIDENT_precinct_reduced.csv")$size 
 
-
 ```
 
-## Graph 
 ```{r fig.width= 20, fig.height = 4}
 library(tidyverse)
 
 
-filter_data <- data |> filter((party_simplified == "DEMOCRAT" | party_simplified == "REPUBLICAN" | party_simplified == "OTHER") &
+filter_data <- data |> filter((party_simplified == "DEMOCRAT" | party_simplified == "REPUBLICAN") &
          (mode == "ABSENTEE" | mode == "NOT ABSENTEE"))
 
 ggplot(filter_data, aes(x = mode, fill = party_simplified)) +
@@ -60,7 +59,7 @@ ggplot(filter_data, aes(x = mode, fill = party_simplified)) +
 print(ggplot)
 ```
 
-## Second Visualization and Analysis
+## Results Section
 
 ```{r}
 library(tidyverse)
@@ -68,12 +67,17 @@ library(broom)
 
 data <- data |>
   filter(party_simplified  == "DEMOCRAT"
-         | party_simplified == "REPUBLICAN"
-         | party_simplified == "OTHER") |>
+         | party_simplified == "REPUBLICAN") |>
   mutate(dem_voters = ifelse(party_simplified == "DEMOCRAT", 1, 0),
         absentee_votes = ifelse(mode == "ABSENTEE", 1, 0))
 
 table <- lm(dem_voters ~ absentee_votes, data = data)
+
+library(broom)
+results <- lm(dem_voters ~ absentee_votes , data = data) 
+summary(results)
+  tidy(results) |>
+  knitr::kable(digits = 3)
 
 table |>
   broom::tidy() |>
@@ -81,13 +85,26 @@ table |>
   knitr::kable(digits = 2)
 ```
 ```{r}
-ggplot(data, aes(x = absentee_votes, y = dem_voters)) +
-  geom_point(color = "steelblue")
+barplot_data <- data |>
+  group_by(absentee_votes) |>
+  summarize(
+    proportion_dem = mean(dem_voters),
+    count = n(),
+    .groups = "drop"
+  )
+
+ggplot(barplot_data, aes(x = absentee_votes, y = proportion_dem, fill = absentee_votes)) +
+  geom_bar(stat = "identity", show.legend = FALSE)
 ```
 
-The intercept of 0.17 means that when absentee votes is 0, about 17% of votes that are in person and at the polls will be for the Democratic candidate. 
+The intercept of 0.504 means that when absentee votes is 0, about 50.4% of votes that are in person and at the polls will be for the Democratic candidate. Since the coefficient for absentee votes is 0.010, this means that the chances of an absentee vote being a democratic vote increases by about one percent. The p-value is zero. This means that there does not seem to be a random effect and makes the study statistically significant. 
 
-Since the coefficient for absentee votes is 0.00, this means that the mode of voting should have no effect on whether a voter votes for a Democratic or Republican candidate. 
+Because the p-value is very low, we are able to reject the null hypothesis that there is no association between democratic voters and sending in an absentee mail-in ballot in the 2020 election. This means that there is statistically significant relationship between absentee mail-in votes and voting democratic. Though there is statistical significance, this does not mean that there was a large correlation, it solely means that these results are not by random chance based on the data presented. We should not be interpreting this causally. There are a multitude of confounding factors, such as demographics or the state a voter lives in, that influence ones vote, not solely their preference of mail-in versus in person voting. In terms of correlation, the coefficient of 0.010 is very small, meaning that there is little significance in terms of correlation between voting absentee mail-in and voting democratic. 
 
-These findings contradict and disprove my hypothesis that more Democratic voters would be voting via mail in ballots versus in person, directly at the polls. 
+We can also examine these results by looking at the bar plot above. The bar on the left, where x = 0, represents the non-absentee votes of the proportion of democratic voters, and the bar on the right, where x = 1, represents absentee votes of the proportion of democratic voters. The bars are very close together, both reaching right around 0.5 on the y-axis. The bar representing absentee mail-in votes is slightly more than non-absentee, but it is very slim. Since the bars do not show a great difference in the proportion of democratic votes between non-absentee and absentee votes, this demonstrates that there is little correlation between mail-in voters also being democratic voters.
+
+
+## Conclusion
+
+According to these results, my hypothesis that a greater amount of absentee votes (mail in votes) are received by the Democratic Party, which I based off of behavioral patterns that I observed during the 2020 election and the COVID-19 pandemic is a weak hypothesis. Though the democratic voters observed in this study did send in more mail-in ballots versus voting in person at the polls in comparison to republican votes, and there was statistical significance, proving that these results were not due to chance, the coefficient of 0.010 shows that it was very slim and does not demonstrate great significance in terms of correlation. This analysis was limited due to a number of different confounding variables. For example, demographics such as age, gender, income, and education play a role in voting patterns. Additionally, location plays a great role as well, which may also tie to political ideologies and beliefs. Since my data and what I chose to observe in this study was limited and did not take into account these confounding variables, we may deny a causal relationship. To improve my analysis, I would take into account demographics as well and would utilize a more comprehensive set of data for a greater examination of voting patterns in the 2020 election. 
 
