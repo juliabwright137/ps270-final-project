@@ -7,12 +7,6 @@ output:
     self_contained: false
 ---
 
-## Project thoughts
-
-I am interested in exploring data related to...
-
-I am interested looking at election outcomes/polling data to see if predictions based on polling data before elections translates to the outcome. I would also be interested in looking into campaign finance similar to problem set 2. I thought it was interesting looking at which candidates spent the most on advertising. 
-
 ## Introduction
 
 My research question is did the mode of voting, whether it be in-person voting directly at the polls or a mail in ballot have an effect on the votes given to the Democratic Party and its candidates in the 2020 Presidential election? 
@@ -102,7 +96,6 @@ The intercept of 0.504 means that when absentee votes is 0, about 50.4% of votes
 Because the p-value is very low, we are able to reject the null hypothesis that there is no association between democratic voters and sending in an absentee mail-in ballot in the 2020 election. This means that there is statistically significant relationship between absentee mail-in votes and voting democratic. Though there is statistical significance, this does not mean that there was a large correlation, it solely means that these results are not by random chance based on the data presented. We should not be interpreting this causally. There are a multitude of confounding factors, such as demographics or the state a voter lives in, that influence ones vote, not solely their preference of mail-in versus in person voting. In terms of correlation, the coefficient of 0.010 is very small, meaning that there is little significance in terms of correlation between voting absentee mail-in and voting democratic. 
 
 We can also examine these results by looking at the bar plot above. The bar on the left, where x = 0, represents the non-absentee votes of the proportion of democratic voters, and the bar on the right, where x = 1, represents absentee votes of the proportion of democratic voters. The bars are very close together, both reaching right around 0.5 on the y-axis. The bar representing absentee mail-in votes is slightly more than non-absentee, but it is very slim. Since the bars do not show a great difference in the proportion of democratic votes between non-absentee and absentee votes, this demonstrates that there is little correlation between mail-in voters also being democratic voters.
-
 
 ## Conclusion
 
