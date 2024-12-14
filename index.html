@@ -1589,7 +1589,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 {
     UseMethod(&quot;ggplot&quot;)
 }
-&lt;bytecode: 0x7f85d6968f98&gt;
+&lt;bytecode: 0x7fdc2dd8b3f8&gt;
 &lt;environment: namespace:ggplot2&gt;</code></pre>
 </div>
 <h2 id="results-section">Results Section</h2>
@@ -1680,6 +1680,64 @@ F-statistic: 25.63 on 1 and 484562 DF,  p-value: 4.146e-07</code></pre>
 <tr class="even">
 <td style="text-align: left;">absentee_votes</td>
 <td style="text-align: right;">0.01</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>modelsummary</span><span class='fu'>::</span><span class='fu'><a href='https://modelsummary.com/man/modelsummary.html'>modelsummary</a></span><span class='op'>(</span><span class='va'>results</span>,</span>
+<span>                           statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"s.e. = {std.error}"</span>,</span>
+<span>                                         <span class='st'>"p = {p.value}"</span><span class='op'>)</span>,</span>
+<span>                           gof_map <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nobs"</span>, <span class='st'>"r.squared"</span>, <span class='st'>"adj.r.squared"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<table style="width:44%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><ol type="1">
+<li></li>
+</ol></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td>0.504</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>s.e. = 0.001</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>p = &lt;0.001</td>
+</tr>
+<tr class="even">
+<td>absentee_votes</td>
+<td>0.010</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>s.e. = 0.002</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>p = &lt;0.001</td>
+</tr>
+<tr class="odd">
+<td>Num.Obs.</td>
+<td>484564</td>
+</tr>
+<tr class="even">
+<td>R2</td>
+<td>0.000</td>
+</tr>
+<tr class="odd">
+<td>R2 Adj.</td>
+<td>0.000</td>
 </tr>
 </tbody>
 </table>

@@ -77,6 +77,13 @@ table |>
   broom::tidy() |>
   select(term, estimate) |>  
   knitr::kable(digits = 2)
+
+
+
+modelsummary::modelsummary(results,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 ```{r}
 barplot_data <- data |>
