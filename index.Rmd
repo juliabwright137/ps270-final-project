@@ -17,7 +17,7 @@ This is interesting because the 2020 election was very unique in that it took pl
 
 ## Data Section
 
-I will be using the dataset “U.S. President Precinct-Level Returns 2020” from Harvard Dataverse to examine if certain modes of voting, such as absentee and mail in or in-person on Election Day, correlates to the candidate/party that received the votes. The key dependent and independent variables are measured through survey data, clinical data, and machine-readable text. 
+I will be using the dataset “U.S. President Precinct-Level Returns 2020” from Harvard Dataverse to examine if certain modes of voting, such as absentee and mail in or in-person on Election Day, correlates to the candidate/party that received the votes. The key dependent and independent variables are measured through survey data, clinical data, and machine-readable text. The data is cross-sectional, as the data was collected from the individuals at the same time.
 
 The explanatory variable of interest will be the form or mode of voting. This is measured by the category present in the data which is either absentee or normal/in-person. This has been pre-recorded. The outcome variable will be which party was voted for. It will either be a democratic or republican candidate, with some writing in and voting for a third party. I will be looking at the share of votes received by the democrats that are mail-ins/absentee. If a large majority of absentee votes were received by the Democrats, this could provide support for my hypothesis. If it does not seem that most of the mail-in votes were received by Democrats, meaning more Republicans or third-party voters were mail-ins, then my hypothesis will be false. 
 
